@@ -1,29 +1,20 @@
-def initialize 
-  @current_position = Array(1..15).sample
-  @bot1 = Array(1..15).sample
-  @bot2 = Array(1..15).sample
-  @bot3 = Array(1..15).sample
-  @weapons = %w(Rocket, Hallelujah, Sheep, Gun)
-end
-
 def new_game(user_answer)
-  if user_answer == "Yes"
+  if user_answer == "yes" || "y"
     ""
-  else user_answer == "No"
+  else user_answer == "no" || "n"
     exit
   end
   puts "Loading a new game"
   puts "..."
-  
 end
 
 def action (user_action)
   if user_action == "right"
-    current_position = current_position + 1
-    puts "Moving on the right"
+    @current_position = @current_position + 1
+    puts "Moving on the right you are here : #{@current_position}"
   elsif user_action == "left"
-    current_position = current_position - 1
-    puts "Moving on the left"
+    @current_position = @current_position - 1
+    puts "Moving on the left you are here : #{@current_position}"
   elsif user_action == "fight"
     "Let's choose a weapon ! 🚀"
   else
@@ -31,21 +22,21 @@ def action (user_action)
   end
 end
 
-def weapon_display
-  @weapons.each_with_index do |weapon, idx|
-    "[#{idx + 1}] - #{weapon}"
+def display(weapons)
+  weapons.each_with_index do |weapon, index|
+    puts "[#{index + 1}] - #{weapon}"
   end
 end
 
 def weapon (user_choice)
-  if user_choice == "Rocket"
+  if user_choice == 0
     "🚀 BOOM ! 💥"
-  elsif user_choice == "Hallelujah"
+  elsif user_choice == 1
     "🔊 Hallelujah 🔊 BOOM ! 💥"
-  elsif user_choice == "Sheep"
+  elsif user_choice == 2
     "🐑 Bêêêê 🐑 BOOM ! 💥"
   elsif
-  user_choice == "Gun"
+  user_choice == 3
     "Paf ! 💥"
   else
     "CAN YOU PLEASE CHOOSE A WEAPON WITHIN THE LIST ? 😬"
