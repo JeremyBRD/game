@@ -1,4 +1,5 @@
 require_relative "game"
+require "byebug"
 
 # Set all the variables
 answer = nil
@@ -6,7 +7,6 @@ answer = nil
 @bot_maps = [Array(1..15), Array(1..20), Array(1..25)]
 @weapons = %w(Rocket Uzi Gun Nunchaku)
 @bot_team = %w(bot1 bot2 bot3)
-@bot_position = { "Bot 1" => @bot1, "Bot 2" => @bot2, "Bot 3" => @bot3 }
 @running = true
 @dead = false
 @maps = ["Library", "Castle", "Factory"]
@@ -32,6 +32,7 @@ while @running == true
   @bot1 = @bot_maps[map_number].sample
   @bot2 = @bot_maps[map_number].sample
   @bot3 = @bot_maps[map_number].sample
+  @bot_position = { "Bot 1" => @bot1, "Bot 2" => @bot2, "Bot 3" => @bot3 }
   # Ask the user if he is ready to play && starting process
   puts "- Ok ! #{user_name} are you ready to start ? (Yes/No)"
   print "> "
@@ -59,6 +60,7 @@ while @running == true
       print "> "
       weapon_index = gets.chomp.to_i - 1
       puts "- Where do you want to shoot ? (Choose a number between 1 & #{@bot_maps[map_number].length})"
+      p @bot_position
       pointing_number = gets.chomp.to_i
       puts weapon(weapon_index)
       puts "..."
