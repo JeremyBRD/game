@@ -13,21 +13,21 @@ end
 def action (user_action)
   if user_action == "right"
     @current_position = @current_position + 1
-    puts "Moving on the right you are here : #{@current_position}"
+    puts "- Moving on the right you are here : #{@current_position}"
   elsif user_action == "left"
     @current_position = @current_position - 1
-    puts "Moving on the left you are here : #{@current_position}"
+    puts "- Moving on the left you are here : #{@current_position}"
   elsif user_action == "fight"
-    puts "Let's choose a weapon ! 🚀"
+    puts "- Let's choose a weapon ! 🚀"
   else
-    puts "CAN YOU PLEASE CHOOSE AN ACTION WITHIN THE LIST ? 😬"
+    puts "- CAN YOU PLEASE CHOOSE AN ACTION WITHIN THE LIST ? 😬"
   end
 end
 
-# STEP 3 define the weapons stuff (display, damage and targeting)
-def display(weapons)
-  weapons.each_with_index do |weapon, index|
-    puts "[#{index + 1}] - #{weapon}"
+# STEP 3 define the elements stuff (display, damage and targeting)
+def display(elements)
+  elements.each_with_index do |element, index|
+    puts "[#{index + 1}] - #{element}"
   end
 end
 
@@ -42,7 +42,7 @@ def weapon (user_choice)
   user_choice == 3
     "Paf ! 💥"
   else
-    "CAN YOU PLEASE CHOOSE A WEAPON WITHIN THE LIST ? 😬"
+    "- CAN YOU PLEASE CHOOSE A WEAPON WITHIN THE LIST ? 😬"
   end
 end
 
@@ -61,13 +61,13 @@ end
 def target(bots_position)
   @range_damaged.each do |damage|
     if damage == @bot_position["Bot 1"]
-      puts "You killed the bot 1 ! 🙌 he was on position #{@bot1}"
+      puts "- You killed the bot 1 ! 🙌 he was on position #{@bot1}"
       @bot_team.delete("bot1")
     elsif damage == @bot_position["Bot 2"]
-      puts "You killed the bot 2 ! 🙌 he was on position #{@bot2}"
+      puts "- You killed the bot 2 ! 🙌 he was on position #{@bot2}"
       @bot_team.delete("bot2")
     elsif damage == @bot_position["Bot 3"]
-      puts "You killed the bot 3 ! 🙌 he was on position #{@bot3}"
+      puts "- You killed the bot 3 ! 🙌 he was on position #{@bot3}"
       @bot_team.delete("bot3")
     end
   end
@@ -81,7 +81,9 @@ end
 def bot_game(current_position)
   @dead = Array(1..15).sample == current_position ? true : false
   if @dead == true
-    puts "You DIE !! ☠️"
+    puts "You DIE !!"
+    puts "❌ GAME OVER ❌"
+    puts "****************"
   else
     puts "The bot miss his target !"
   end
