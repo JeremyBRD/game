@@ -1,12 +1,14 @@
 # STEP 1 define when the game is starting
 def new_game(user_answer)
   if user_answer == "yes" || user_answer == "y"
-    ""
+    puts ""
   else user_answer == "no" || user_answer == "n"
-    "exit"
+    @running = false
   end
-  puts "Loading a new game"
-  puts "..."
+  if @running == true
+    puts "Loading a new game"
+    puts "..."
+  end
 end
 
 # STEP 2 differents routes for the user
