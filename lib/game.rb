@@ -11,10 +11,10 @@ end
 
 # STEP 2 differents routes for the user
 def action (user_action)
-  if user_action == "right" || user_action == "^[[C"
+  if user_action == "right"
     @current_position = @current_position + 1
     puts "Moving on the right you are here : #{@current_position}"
-  elsif user_action == "left" || user_action == "^[[D"
+  elsif user_action == "left"
     @current_position = @current_position - 1
     puts "Moving on the left you are here : #{@current_position}"
   elsif user_action == "fight"
@@ -61,11 +61,14 @@ end
 def target(bots_position)
   @range_damaged.each do |damage|
     if damage == @bot_position["Bot 1"]
-      puts "You killed the bot 1 ! 🙌 he was on position #{@bot1}" && @bot_team.delete("bot1")
+      puts "You killed the bot 1 ! 🙌 he was on position #{@bot1}"
+      @bot_team.delete("bot1")
     elsif damage == @bot_position["Bot 2"]
-      puts "You killed the bot 2 ! 🙌 he was on position #{@bot2}" && @bot_team.delete("bot2")
+      puts "You killed the bot 2 ! 🙌 he was on position #{@bot2}"
+      @bot_team.delete("bot2")
     elsif damage == @bot_position["Bot 3"]
-      puts "You killed the bot 3 ! 🙌 he was on position #{@bot3}" && @bot_team.delete("bot3")
+      puts "You killed the bot 3 ! 🙌 he was on position #{@bot3}"
+      @bot_team.delete("bot3")
     end
   end
   if @bot_team.size == 0
@@ -76,7 +79,17 @@ end
 
 # STEP 4 define the bot game
 def bot_game(current_position)
-  Array(1..15).sample == current_position ? (puts "You die 😱") : (puts "The bot missed his target !")
+  @dead = Array(1..15).sample == current_position ? true : false
+  if @dead == true
+    puts "You DIE !! ☠️"
+  else
+    puts "The bot miss his target !"
+  end
 end
 
-# STEP 5 define Game Over or You win !
+# STEP 5 define Game Over
+def game_over?
+  if @dead == true
+    @running = false
+  end
+end
