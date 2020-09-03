@@ -11,14 +11,21 @@ def new_game(user_answer)
   end
 end
 
-# STEP 2 differents routes for the user
+def play_again?(answer)
+  answer == "yes" || answer == "y"
+    @running = true
+  answer == "no" || answer == "n"
+    @running = false
+end
+
+# STEP 2 different routes for the user
 def action (user_action)
   if user_action == "right"
     @current_position = @current_position + 1
-    puts "- Moving on the right you are here : #{@current_position}"
+    puts "- Moving to the right, you are here : #{@current_position}"
   elsif user_action == "left"
     @current_position = @current_position - 1
-    puts "- Moving on the left you are here : #{@current_position}"
+    puts "- Moving to the left, you are here : #{@current_position}"
   elsif user_action == "fight"
     puts "- Let's choose a weapon ! 🚀"
   else
@@ -26,7 +33,7 @@ def action (user_action)
   end
 end
 
-# STEP 3 define the elements stuff (display, damage and targeting)
+# STEP 3 define the actions (display, damage and targeting)
 def display(elements)
   elements.each_with_index do |element, index|
     puts "[#{index + 1}] - #{element}"
@@ -64,17 +71,17 @@ def target(bots_position)
   @range_damaged.each do |damage|
     if damage == @bot_position["Bot 1"]
       puts "- You killed the bot 1 ! 🙌 he was on position #{@bot1}"
-      @bot_team.delete("bot1")
+      @bot_position.delete("Bot 1")
     elsif damage == @bot_position["Bot 2"]
       puts "- You killed the bot 2 ! 🙌 he was on position #{@bot2}"
-      @bot_team.delete("bot2")
+      @bot_position.delete("Bot 2")
     elsif damage == @bot_position["Bot 3"]
       puts "- You killed the bot 3 ! 🙌 he was on position #{@bot3}"
-      @bot_team.delete("bot3")
+      @bot_position.delete("Bot 3")
     end
   end
-  if @bot_team.size == 0
-    puts "🏆 YOU WIN !!!! 🏆"
+  if @bot_position.size == 0
+    puts "🏆 YOU WON !!!! 🏆"
     puts "******************"
   end
 end
@@ -87,7 +94,7 @@ def bot_game(current_position)
     puts "❌ GAME OVER ❌"
     puts "****************"
   else
-    puts "The bot miss his target !"
+    puts "The bot missed his target !"
   end
 end
 
