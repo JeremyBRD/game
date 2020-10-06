@@ -71,7 +71,9 @@ while @running == true
       end
     end
     # Before starting the loop again, ask if the game is over
-    self.game_over?
+    if @dead == true
+      @running = false
+    end
   end
   if @running == true
     puts "Play again ?"

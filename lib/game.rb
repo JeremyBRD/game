@@ -100,7 +100,5 @@ end
 
 # STEP 5 define Game Over
 def game_over?
-  if @dead == true
-    @running = false
-  end
+
 end
